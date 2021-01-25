@@ -8,13 +8,20 @@ import (
 
 // java 命令行工具
 type Java struct {
-	HelpFlag    bool
+	// -help
+	HelpFlag bool
+	// -version
 	VersionFlag bool
-	CpOption    string
-	Class       string
-	Args        []string
+	// -classpath or -cp
+	CpOption       string
+	Xbootclasspath string
+	// 完整全类名
+	Class string
+	// 命令行参数
+	Args []string
 }
 
+// 解析 flag 命令参数
 func ParseJavaCmd() *Java {
 	java := &Java{}
 	flag.Usage = PrintUsage
@@ -32,6 +39,7 @@ func ParseJavaCmd() *Java {
 	return java
 }
 
+// 打印命令行使用说明
 func PrintUsage() {
 	fmt.Printf("Usage: %s [-options] class [args...]\n", os.Args[0])
 }
