@@ -13,8 +13,11 @@ type Java struct {
 	// -version
 	VersionFlag bool
 	// -classpath or -cp
-	CpOption       string
-	Xbootclasspath string
+	CpOption string
+	// -jar
+	Jar string
+	// -Xbootclasspath
+	Xbootcp string
 	// 完整全类名
 	Class string
 	// 命令行参数
@@ -30,6 +33,8 @@ func ParseJavaCmd() *Java {
 	flag.BoolVar(&java.VersionFlag, "version", false, "print version and exit")
 	flag.StringVar(&java.CpOption, "classpath", "", "classpath")
 	flag.StringVar(&java.CpOption, "cp", "", "classpath")
+	flag.StringVar(&java.Jar, "jar", "", "jar")
+	flag.StringVar(&java.Xbootcp, "Xbootclasspath", "", "Xbootclasspath")
 	flag.Parse()
 	args := flag.Args()
 	if len(args) > 0 {
