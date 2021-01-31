@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// 类加载器切片数组，多个类加载器的组合
+// 类加载器切片数组，多种类加载器的组合
 type CompositeClassLoader []ClassLoader
 
 func CreateCompositeClassLoader(pathList string) CompositeClassLoader {
@@ -17,9 +17,9 @@ func CreateCompositeClassLoader(pathList string) CompositeClassLoader {
 	return compositeClassLoader
 }
 
-func (s CompositeClassLoader) loadClass(classname string) ([]byte, error) {
+func (s CompositeClassLoader) LoadClass(classname string) ([]byte, error) {
 	for _, cl := range s {
-		data, err := cl.loadClass(classname)
+		data, err := cl.LoadClass(classname)
 		if err == nil {
 			return data, nil
 		}

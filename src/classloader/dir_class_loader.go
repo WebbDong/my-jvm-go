@@ -19,7 +19,7 @@ func CreateDirClassLoader(path string) *DirClassLoader {
 	return &DirClassLoader{AbsDirPath: absDirPath}
 }
 
-func (d *DirClassLoader) loadClass(classname string) ([]byte, error) {
+func (d *DirClassLoader) LoadClass(classname string) ([]byte, error) {
 	absFilePath := filepath.Join(d.AbsDirPath, classname)
 	data, err := ioutil.ReadFile(absFilePath)
 	return data, err

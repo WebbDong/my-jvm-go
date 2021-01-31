@@ -11,9 +11,10 @@ const pathListSeparator = string(os.PathListSeparator)
 // 类加载器接口
 type ClassLoader interface {
 	// 加载字节码文件
-	loadClass(classname string) ([]byte, error)
+	LoadClass(classname string) ([]byte, error)
 }
 
+// 根据路径的情况创建对应的类加载器
 func NewClassLoader(path string) ClassLoader {
 	var classLoader ClassLoader
 	if strings.Contains(path, pathListSeparator) {

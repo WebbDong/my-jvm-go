@@ -20,14 +20,15 @@ func CreateJarClassLoader(path string) *JarClassLoader {
 	return &JarClassLoader{AbsJarPath: absJarPath}
 }
 
-func (j *JarClassLoader) loadClass(classname string) ([]byte, error) {
+func (j *JarClassLoader) LoadClass(classname string) ([]byte, error) {
 	reader, err := zip.OpenReader(j.AbsJarPath)
 	if err != nil {
 		return nil, err
 	}
 	defer reader.Close()
+	classFileName := classname + ".class"
 	for _, f := range reader.File {
-		if f.Name == classname {
+		if f.Name == classFileName {
 			rc, err := f.Open()
 			if err != nil {
 				rc.Close()
